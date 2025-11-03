@@ -1,0 +1,12 @@
+@import "leaflet/dist/leaflet.css";
+@import "leaflet-geosearch/dist/geosearch.css";
+@import "tailwindcss";
+
+@import "tailwindcss";
+@import "tailwindcss/utilities";
+
+/* تنسيق عام للخريطة */
+.leaflet-container {
+  text-align: right;
+  direction: rtl;
+}
