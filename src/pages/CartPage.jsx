@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { db } from '../firebase/firebaseConfig';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
-import { Trash2 } from 'lucide-react'; // (أيقونة الحذف)
+import { Trash2 } from 'lucide-react'; 
 
 function CartPage() {
   const { cartItems, removeFromCart, clearCart } = useCart();
@@ -13,10 +13,10 @@ function CartPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // 1. حساب الإجمالي
+
   const totalPrice = cartItems.reduce((total, item) => total + item.servicePrice, 0);
 
-  // 2. دالة إرسال الطلب (تحويل السلة إلى طلبات حقيقية)
+ 
   const handleCheckout = async () => {
     if (!currentUser) {
       navigate('/login');
@@ -27,7 +27,7 @@ function CartPage() {
     setError('');
 
     try {
-      // 3. المرور على كل عنصر في السلة وحفظه كـ "طلب" منفصل
+ 
       for (const item of cartItems) {
         await addDoc(collection(db, "bookings"), {
           userId: currentUser.uid,
@@ -43,7 +43,7 @@ function CartPage() {
         });
       }
 
-      // 4. بعد النجاح: تفريغ السلة وتوجيه العميل
+
       clearCart();
       alert('تم إرسال طلباتك بنجاح! ستجدها في صفحة "طلباتي".');
       navigate('/my-bookings');
@@ -57,7 +57,7 @@ function CartPage() {
   };
 
   return (
-    // 5. *** تطبيق التصميم (خلفية بنية، بطاقات بيج) ***
+  
     <div className="bg-kashta-bg min-h-screen py-10 text-light-beige">
       <div className="container mx-auto p-6 max-w-4xl">
         <h1 className="text-4xl font-extrabold text-light-beige text-center mb-10">
@@ -78,7 +78,7 @@ function CartPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            {/* 6. *** قائمة الطلبات (في اليمين) *** */}
+        
             <div className="md:col-span-2 space-y-4">
               {cartItems.map((item) => (
                 <div key={item.cartId} className="bg-[#d8ceb8ff] text-[#3e2723] p-4 rounded-2xl shadow-lg flex items-center justify-between">
@@ -107,7 +107,7 @@ function CartPage() {
               ))}
             </div>
 
-            {/* 7. *** ملخص الطلب (في اليسار) *** */}
+        
             <div className="md:col-span-1">
               <div className="bg-[#d8ceb8ff] text-[#3e2723] p-6 rounded-2xl shadow-lg sticky top-28">
                 <h3 className="text-2xl font-bold mb-4 border-b border-[#3e2723]/20 pb-2">ملخص السلة</h3>

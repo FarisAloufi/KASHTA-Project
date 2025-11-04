@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext'; 
-import { useCart } from '../../context/CartContext'; // 1. *** تمت إضافة استيراد السلة ***
+import { useCart } from '../../context/CartContext'; 
 import { auth } from '../../firebase/firebaseConfig';
 import { signOut } from 'firebase/auth';
-// 2. *** تمت إضافة أيقونة السلة (FaShoppingCart) ***
+
 import { FaSignOutAlt, FaPlusCircle, FaTh, FaCalendarAlt, FaShoppingCart } from 'react-icons/fa'; 
 import KashtaLogo from '../../assets/Kashtalogo.png';
 
 function Navbar() {
   const { currentUser, userRole } = useAuth();
-  const { cartItems } = useCart(); // 3. *** جلب بيانات السلة ***
+  const { cartItems } = useCart(); 
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -26,12 +26,12 @@ function Navbar() {
     <nav className="bg-[#d8ceb8ff] text-[#3e2723] shadow-md py-4 sticky top-0 z-[1000]">
       <div className="container mx-auto px-6 flex justify-between items-center">
         
-        {/* === 1. القسم الأيسر (الشعار) === */}
+       
         <Link to="/" className="text-2xl font-bold text-[#3e2723] flex items-center gap-2 hover:text-[#e48a4e] transition-colors">
           {<img src={KashtaLogo} alt="KASHTA Logo" className="h-15 w-auto" />}
         </Link>
 
-        {/* === 2. القسم الأوسط (الأزرار الرئيسية) === */}
+       
         <div className="flex items-center gap-6">
           <Link to="/about-us" className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200">
             من نحن

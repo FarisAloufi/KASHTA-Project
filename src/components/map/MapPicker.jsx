@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet';
-import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch'; 
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import 'leaflet/dist/leaflet.css';
+import 'leaflet-geosearch/dist/geosearch.css';
+
+import { isLocationAllowed } from '../../data/serviceZones'; 
 
 
 const containerStyle = {
@@ -11,60 +15,70 @@ const containerStyle = {
 const center = [24.7136, 46.6753]; 
 
 
-function MapClickHandler({ onLocationChange, setMarkerPosition }) {
+function MapClickHandler({ onLocationChange, setMarkerPosition, mode }) {
   useMapEvents({
     click(e) {
       const newPos = [e.latlng.lat, e.latlng.lng];
-      setMarkerPosition(newPos);
-      onLocationChange({ lat: newPos[0], lng: newPos[1] });
-      console.log("Leaflet: تم اختيار الموقع (بالنقر):", newPos);
+
+   
+      if (mode === 'set') {
+   
+        setMarkerPosition(newPos);
+        onLocationChange({ lat: newPos[0], lng: newPos[1] });
+      } else {
+
+        if (isLocationAllowed(newPos[0], newPos[1])) {
+          setMarkerPosition(newPos);
+          onLocationChange({ lat: newPos[0], lng: newPos[1] });
+        } else {
+          alert("عذراً، هذه المنطقة خارج نطاق الخدمة حالياً.");
+        }
+      }
     },
   });
   return null;
 }
 
-
-function SearchField({ setMarkerPosition, onLocationChange }) {
+function SearchField({ setMarkerPosition, onLocationChange, mode }) {
   const map = useMap(); 
   
   useEffect(() => {
-
     const provider = new OpenStreetMapProvider();
-
-
     const searchControl = new GeoSearchControl({
       provider: provider,
-      style: 'bar',     
-      autoClose: true,   
-      keepResult: true,   
-      searchLabel: 'ابحث عن حي أو مكان...' 
+      style: 'bar',
+      autoClose: true,
+      keepResult: true,
+      searchLabel: 'ابحث عن حي أو مكان...'
     });
-
-    map.addControl(searchControl); 
-
+    map.addControl(searchControl);
 
     const onResult = (e) => {
+      const newPos = [e.location.y, e.location.x]; 
 
-      const newPos = [e.location.y, e.location.x];
-      setMarkerPosition(newPos); 
-      onLocationChange({ lat: newPos[0], lng: newPos[1] }); 
-      console.log("Leaflet: تم اختيار الموقع (بالبحث):", newPos);
+    
+      if (mode === 'set') {
+        setMarkerPosition(newPos);
+        onLocationChange({ lat: newPos[0], lng: newPos[1] });
+      } else {
+        if (isLocationAllowed(newPos[0], newPos[1])) {
+          setMarkerPosition(newPos);
+          onLocationChange({ lat: newPos[0], lng: newPos[1] });
+        } else {
+          alert("عذراً، البحث عن هذه المنطقة خارج نطاق الخدمة.");
+        }
+      }
     };
 
     map.on('geosearch/showlocation', onResult);
+    return () => { map.removeControl(searchControl); map.off('geosearch/showlocation', onResult); };
+  }, [map, setMarkerPosition, onLocationChange, mode]);
 
-
-    return () => {
-      map.removeControl(searchControl);
-      map.off('geosearch/showlocation', onResult);
-    };
-  }, [map, setMarkerPosition, onLocationChange]);
-
-  return null; 
+  return null;
 }
 
 
-function MapPicker({ onLocationChange }) {
+function MapPicker({ onLocationChange, mode = 'booking' }) { 
   const [markerPosition, setMarkerPosition] = useState(center);
 
   return (
@@ -72,9 +86,10 @@ function MapPicker({ onLocationChange }) {
       center={center} 
       zoom={10} 
       style={containerStyle}
+      zoomControl={true} 
     >
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       
@@ -83,12 +98,13 @@ function MapPicker({ onLocationChange }) {
       <MapClickHandler 
         onLocationChange={onLocationChange}
         setMarkerPosition={setMarkerPosition}
+        mode={mode} 
       />
       
-
       <SearchField 
         onLocationChange={onLocationChange}
         setMarkerPosition={setMarkerPosition}
+        mode={mode}
       />
     </MapContainer>
   );
