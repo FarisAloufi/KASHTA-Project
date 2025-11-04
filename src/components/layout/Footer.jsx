@@ -41,7 +41,7 @@ function Footer() {
         {/* Contact & Social */}
         <div>
           <h3 className="text-xl font-bold mb-4">تواصل معنا</h3>
-          <div className="flex space-x-4 space-x-reverse">
+          <div className="flex space-x-2">
            
             <a href="#" className="text-[#3e2723] hover:text-[#e48a4e] transition-colors duration-200"><FaFacebook size={24} /></a>
             <a href="#" className="text-[#3e2723] hover:text-[#e48a4e] transition-colors duration-200"><FaTwitter size={24} /></a>

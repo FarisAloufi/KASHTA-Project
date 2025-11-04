@@ -106,14 +106,13 @@ function BookingDetailPage() {
         
         <hr className="my-6" />
 
-        {/* متتبع الحالة */}
+
         <div className="mb-6">
           <StatusTracker status={booking.status} />
         </div>
 
         <hr className="my-6" />
 
-        {/* تفاصيل الوقت والموقع */}
         <div className="space-y-4 mb-6">
           <div>
             <h3 className="font-bold text-gray-700 text-lg">تاريخ ووقت "الكشتة"</h3>
@@ -124,12 +123,12 @@ function BookingDetailPage() {
           </div>
         </div>
 
-        {/* الخريطة */}
+
         <div className="w-full h-80 rounded-lg overflow-hidden border">
           <MapDisplay location={booking.location} />
         </div>
 
-        {/* === منطق التقييم (كما كان) === */}
+
         {userRole === 'customer' && (
           <>
             {booking.status === 'completed' && !booking.rated && (

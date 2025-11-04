@@ -6,7 +6,7 @@ const steps = [
   { status: 'pending', text: 'أرسلنا طلبك... المزود شوي ويشيك عليه', icon: <FaHourglassHalf /> },
   { status: 'confirmed', text: 'وافقوا! طلبك قيد التجهيز (باقي شوي)', icon: <FaCheckCircle /> },
   { status: 'ready', text: 'حمّلنا الدباب... طلبك في الطريق!', icon: <FaTruck /> },
-  { status: 'completed', text: 'وصل بالسلامة. استمتع بالكشتة!', icon: <FaRegSmileBeam /> }
+  { status: 'completed', text: '!وصل بالسلامة. استمتع بالكشتة', icon: <FaRegSmileBeam /> }
 ];
 
 

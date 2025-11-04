@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase/firebaseConfig';
-// 1. استيراد onSnapshot (المستمع) بدلاً من getDocs
+
 import { collection, query, where, onSnapshot, orderBy } from 'firebase/firestore'; 
 import { useAuth } from '../context/AuthContext';
 import BookingCard from '../components/orders/BookingCard';
@@ -10,25 +10,22 @@ function MyBookingsPage() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 2. سنستخدم useEffect للاستماع
+
   useEffect(() => {
     if (!currentUser) {
       setLoading(false);
       return;
     }
 
-    // 3. بناء الاستعلام (Query) كما كان
+
     const bookingsRef = collection(db, "bookings");
     const q = query(bookingsRef, 
       where("userId", "==", currentUser.uid),
       orderBy("createdAt", "desc")
     );
 
-    // 4. *** هذا هو التغيير الأهم ***
-    // (onSnapshot) بدلاً من (getDocs)
-    // (onSnapshot) تُرجع دالة (unsubscribe) لإيقاف الاستماع
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      // (هذا الكود سيعمل تلقائياً كلما حدث تغيير في قاعدة البيانات)
+
       const userBookings = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
@@ -39,19 +36,18 @@ function MyBookingsPage() {
       console.log("تحديث تلقائي: تم جلب الطلبات!", userBookings);
 
     }, (err) => {
-      // 5. التعامل مع الأخطاء
+ 
       console.error("خطأ في الاستماع للطلبات:", err);
       setLoading(false);
     });
 
-    // 6. دالة "التنظيف" (Cleanup)
-    // عند إغلاق الصفحة، يجب أن نوقف الاستماع لتوفير الموارد
+
     return () => {
       console.log("إيقاف الاستماع للطلبات");
       unsubscribe();
     };
 
-  }, [currentUser]); // إعادة تشغيل الاستماع إذا تغير المستخدم
+  }, [currentUser]); 
 
   if (loading) {
     return <h1 className="text-center text-2xl p-10">جاري تحميل طلباتك...</h1>;

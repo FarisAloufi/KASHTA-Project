@@ -18,7 +18,7 @@ function AboutUsPage() {
           <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
             نحن نجهز الكشتة،
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-kashta-accent to-orange-300">
-              وأنت تعيش المغامرة!
+              !وأنت تعيش المغامرة
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-light-beige/90 mb-8 leading-relaxed max-w-3xl mx-auto">
@@ -62,7 +62,7 @@ function AboutUsPage() {
               <Heart className="w-12 h-12 mx-auto mb-4 text-[#3e2723]" />
               <h3 className="text-2xl font-bold text-[#3e2723]">موثوقية تامة</h3>
               <p className="text-[#3e2723]">
-                نحن نربطك بأفضل مزودي الخدمة الموثوقين لضمان جودة وراحة لا تضاهى.
+                الجودة هي معيارنا. كل خدمة وكل خيمة في منصتنا يتم فحصها واختيارها بعناية، لنضمن لك تجربة "كشتة" فخمة ومطابقة تماماً لما تراه في الصور.
               </p>
             </div>
           </div>

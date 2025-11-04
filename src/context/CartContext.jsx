@@ -32,7 +32,7 @@ export function CartProvider({ children }) {
       const newItem = { ...item, cartId: Date.now() };
       return [...prevItems, newItem];
     });
-    alert('تمت إضافة الخدمة إلى السلة!');
+    alert('!تمت إضافة الخدمة إلى السلة');
   };
 
 

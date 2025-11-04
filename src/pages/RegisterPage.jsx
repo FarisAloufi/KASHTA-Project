@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
 function RegisterPage() {
-  const [name, setName] = useState(''); // *** 1. تمت إضافة State للاسم ***
+  const [name, setName] = useState(''); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -15,7 +15,7 @@ function RegisterPage() {
     e.preventDefault();
     setError('');
 
-    // *** 2. تمت إضافة التحقق من الاسم ***
+    
     if (!name) {
         setError('الرجاء إدخال اسمك الكامل.');
         return;
@@ -25,10 +25,10 @@ function RegisterPage() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // *** 3. تمت إضافة الاسم هنا عند حفظ المستخدم ***
+     
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
-        name: name, // حفظ الاسم
+        name: name, 
         email: user.email,
         role: "customer", 
         createdAt: new Date()
@@ -58,7 +58,7 @@ function RegisterPage() {
 
         <form onSubmit={handleSubmit}>
 
-          {/* *** 4. تمت إضافة خانة الاسم الكامل هنا *** */}
+          
           <div className="mb-6">
             <label className="block text-black text-base font-semibold mb-2 text-right" htmlFor="name">
               الاسم الكامل

@@ -185,7 +185,7 @@ function HomePage() {
             <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
               جهز كشتتك
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent-orange to-orange-300">
-                بخطوة واحدة!
+                !بخطوة واحدة
               </span>
             </h1>
                         

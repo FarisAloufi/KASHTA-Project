@@ -70,7 +70,7 @@ function CartPage() {
             <p className="text-lg mb-6">شكلك ما اخترت كشتتك للحين. تصفح خدماتنا!</p>
             <Link 
               to="/services" 
-              className="bg-[#3e2723] text-white px-8 py-3 rounded-xl font-bold text-lg shadow-md hover:bg-black transition-all"
+              className="bg-black text-white px-8 py-3 rounded-xl font-bold text-lg shadow-md hover:bg-[#3e2723] transition-all"
             >
               تصفح الخدمات
             </Link>
