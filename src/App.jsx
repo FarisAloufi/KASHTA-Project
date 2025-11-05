@@ -1,30 +1,30 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
 // Pages
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import ServiceDetailPage from './pages/ServiceDetailPage';
-import MyBookingsPage from './pages/MyBookingsPage';
-import BookingDetailPage from './pages/BookingDetailPage';
-import AddServicePage from './pages/provider/AddServicePage';
-import ManageBookingsPage from './pages/provider/ManageBookingsPage';
-import ServicesPage from './pages/ServicesPage'; 
-import AboutUsPage from './pages/AboutUsPage';
-import CartPage from './pages/CartPage';
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ServiceDetailPage from "./pages/ServiceDetailPage";
+import MyBookingsPage from "./pages/MyBookingsPage";
+import BookingDetailPage from "./pages/BookingDetailPage";
+import AddServicePage from "./pages/provider/AddServicePage";
+import ManageBookingsPage from "./pages/provider/ManageBookingsPage";
+import ServicesPage from "./pages/ServicesPage";
+import AboutUsPage from "./pages/AboutUsPage";
+import CartPage from "./pages/CartPage";
 
 // Routes
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import ProviderRoute from './components/auth/ProviderRoute';
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import ProviderRoute from "./components/auth/ProviderRoute";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen"> 
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      
+
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -37,7 +37,7 @@ function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path="/my-bookings" element={<MyBookingsPage />} />
-            <Route path="/booking/:id" element={<BookingDetailPage />} /> 
+            <Route path="/booking/:id" element={<BookingDetailPage />} />
           </Route>
 
           <Route element={<ProviderRoute />}>
@@ -46,7 +46,7 @@ function App() {
           </Route>
         </Routes>
       </main>
-      
+
       <Footer />
     </div>
   );

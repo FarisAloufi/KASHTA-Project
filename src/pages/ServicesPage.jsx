@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { db } from '../firebase/firebaseConfig';
-import { collection, getDocs, query, where, doc, deleteDoc } from 'firebase/firestore';  
-import { Award, MapPin } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-import ServiceCard from '../components/services/ServiceCard';
-
+import React, { useState, useEffect } from "react";
+import { db } from "../firebase/firebaseConfig";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { Award, MapPin } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import ServiceCard from "../components/services/ServiceCard";
 
 function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -15,30 +21,35 @@ function ServicesPage() {
     setLoading(true);
     const fetchServices = async () => {
       try {
-        const servicesCollectionRef = collection(db, "services"); 
-        const data = await getDocs(query(servicesCollectionRef)); 
+        const servicesCollectionRef = collection(db, "services");
+        const data = await getDocs(query(servicesCollectionRef));
         const servicesData = data.docs.map((doc) => ({
-          ...doc.data(), 
+          ...doc.data(),
           id: doc.id,
-          rating: 0, 
+          rating: 0,
           ratingCount: 0,
         }));
-        
+
         const servicesWithRatings = await Promise.all(
-            servicesData.map(async (service) => {
-                const ratingsRef = collection(db, "ratings");
-                const q = query(ratingsRef, where("serviceId", "==", service.id));
-                const ratingsSnapshot = await getDocs(q);
-                let totalRating = 0;
-                ratingsSnapshot.forEach(doc => { totalRating += doc.data().rating; });
-                const count = ratingsSnapshot.size;
-                const average = count > 0 ? (totalRating / count).toFixed(1) : 0;
-                return { ...service, rating: parseFloat(average), ratingCount: count };
-            })
+          servicesData.map(async (service) => {
+            const ratingsRef = collection(db, "ratings");
+            const q = query(ratingsRef, where("serviceId", "==", service.id));
+            const ratingsSnapshot = await getDocs(q);
+            let totalRating = 0;
+            ratingsSnapshot.forEach((doc) => {
+              totalRating += doc.data().rating;
+            });
+            const count = ratingsSnapshot.size;
+            const average = count > 0 ? (totalRating / count).toFixed(1) : 0;
+            return {
+              ...service,
+              rating: parseFloat(average),
+              ratingCount: count,
+            };
+          }),
         );
         setServices(servicesWithRatings);
-      } catch (err)
-      {
+      } catch (err) {
         console.error("خطأ في جلب الخدمات:", err);
       } finally {
         setLoading(false);
@@ -50,10 +61,10 @@ function ServicesPage() {
 
   const handleDeleteService = async (serviceId) => {
     try {
-      const serviceDocRef = doc(db, 'services', serviceId);
+      const serviceDocRef = doc(db, "services", serviceId);
       await deleteDoc(serviceDocRef);
-      setServices(prevServices => 
-        prevServices.filter(service => service.id !== serviceId)
+      setServices((prevServices) =>
+        prevServices.filter((service) => service.id !== serviceId),
       );
     } catch (error) {
       console.error("Error removing document: ", error);
@@ -65,20 +76,23 @@ function ServicesPage() {
       <div className="flex items-center justify-center min-h-screen bg-kashta-bg">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-kashta-accent border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <h1 className="text-2xl font-bold text-light-beige">جاري تحميل الخدمات...</h1>
+          <h1 className="text-2xl font-bold text-light-beige">
+            جاري تحميل الخدمات...
+          </h1>
         </div>
       </div>
     );
   }
 
   return (
-  
     <div className="bg-kashta-bg min-h-screen">
       <section className="bg-kashta-beige text-kashta-brown container mx-auto px-6 py-20 rounded-t-3xl shadow-xl mt-12 relative z-20">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-kashta-brown/10 px-4 py-2 rounded-full mb-4">
             <Award className="w-4 h-4 text-kashta-brown" />
-            <span className="text-sm font-bold text-kashta-brown">خدمات مميزة</span>
+            <span className="text-sm font-bold text-kashta-brown">
+              خدمات مميزة
+            </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-kashta-brown mb-4">
             جميع الخدمات
@@ -87,20 +101,22 @@ function ServicesPage() {
             اختر من بين مجموعة واسعة من الخيام والمخيمات المجهزة بأحدث المرافق
           </p>
         </div>
-                
+
         {services.length === 0 ? (
           <div className="text-center py-20">
             <div className="w-24 h-24 bg-kashta-brown/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <MapPin className="w-12 h-12 text-kashta-brown/40" />
             </div>
-            <p className="text-xl text-kashta-brown/60">لا توجد خدمات متاحة حالياً</p>
+            <p className="text-xl text-kashta-brown/60">
+              لا توجد خدمات متاحة حالياً
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map(service => (
-              <ServiceCard 
-                key={service.id} 
-                service={service} 
+            {services.map((service) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
                 userRole={userRole}
                 onDelete={handleDeleteService}
               />

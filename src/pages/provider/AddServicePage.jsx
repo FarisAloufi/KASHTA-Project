@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import { db } from '../../firebase/firebaseConfig';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext'; 
+import React, { useState } from "react";
+import { db } from "../../firebase/firebaseConfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 function AddServicePage() {
   const { currentUser } = useAuth();
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [imageUrl, setImageUrl] = useState('');
-  const [description, setDescription] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
 
     if (!name || price <= 0 || !imageUrl || !description) {
-      setError('الرجاء ملء جميع الحقول بسعر صحيح.');
+      setError("الرجاء ملء جميع الحقول بسعر صحيح.");
       return;
     }
 
@@ -34,44 +34,51 @@ function AddServicePage() {
         imageUrl: imageUrl,
         description: description,
         createdAt: serverTimestamp(),
-        providerId: currentUser.uid, 
+        providerId: currentUser.uid,
       });
-      
-      setSuccess('تمت إضافة الخدمة بنجاح!');
-      
-      setName('');
+
+      setSuccess("تمت إضافة الخدمة بنجاح!");
+
+      setName("");
       setPrice(0);
-      setImageUrl('');
-      setDescription('');
+      setImageUrl("");
+      setDescription("");
 
       setTimeout(() => {
-        navigate('/services'); 
+        navigate("/services");
       }, 2000);
-
     } catch (err) {
       console.error("خطأ في إضافة الخدمة:", err);
-      setError('حدث خطأ أثناء إضافة الخدمة.');
+      setError("حدث خطأ أثناء إضافة الخدمة.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-  
     <div className="min-h-screen flex items-center justify-center p-6">
-     
       <div className="max-w-2xl w-full bg-[#d8ceb8ff] text-[#3e2723] rounded-3xl shadow-2xl p-10 border border-dark-brown/10">
         <h1 className="text-4xl font-extrabold text-center text-[#3e2723] mb-10">
           إضافة خدمة جديدة
         </h1>
 
-        {error && <p className="bg-red-100 text-red-700 p-3 rounded-xl mb-6 text-center font-medium">{error}</p>}
-        {success && <p className="bg-green-100 text-green-700 p-3 rounded-xl mb-6 text-center font-medium">{success}</p>}
+        {error && (
+          <p className="bg-red-100 text-red-700 p-3 rounded-xl mb-6 text-center font-medium">
+            {error}
+          </p>
+        )}
+        {success && (
+          <p className="bg-green-100 text-green-700 p-3 rounded-xl mb-6 text-center font-medium">
+            {success}
+          </p>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          
           <div>
-            <label className="block text-[#3e2723] text-base font-semibold mb-2 text-right" htmlFor="name">
+            <label
+              className="block text-[#3e2723] text-base font-semibold mb-2 text-right"
+              htmlFor="name"
+            >
               اسم الخدمة (مثل: خيمة ملكية)
             </label>
             <input
@@ -85,7 +92,10 @@ function AddServicePage() {
           </div>
 
           <div>
-            <label className="block text-[#3e2723] text-base font-semibold mb-2 text-right" htmlFor="description">
+            <label
+              className="block text-[#3e2723] text-base font-semibold mb-2 text-right"
+              htmlFor="description"
+            >
               وصف الخدمة
             </label>
             <textarea
@@ -101,7 +111,10 @@ function AddServicePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-[#3e2723] text-base font-semibold mb-2 text-right" htmlFor="price">
+              <label
+                className="block text-[#3e2723] text-base font-semibold mb-2 text-right"
+                htmlFor="price"
+              >
                 السعر (بالريال)
               </label>
               <input
@@ -114,7 +127,10 @@ function AddServicePage() {
               />
             </div>
             <div>
-              <label className="block text-[#3e2723] text-base font-semibold mb-2 text-right" htmlFor="imageUrl">
+              <label
+                className="block text-[#3e2723] text-base font-semibold mb-2 text-right"
+                htmlFor="imageUrl"
+              >
                 رابط صورة الخدمة (Cloudinary)
               </label>
               <input
@@ -130,13 +146,12 @@ function AddServicePage() {
           </div>
 
           <div className="flex items-center justify-center pt-4">
-          
             <button
               className="bg-black text-white font-bold py-3 px-8 rounded-xl focus:outline-none focus:shadow-outline text-lg transition shadow-lg disabled:bg-gray-400 hover:bg-gray-800"
               type="submit"
               disabled={loading}
             >
-              {loading ? 'جاري الإضافة...' : 'إضافة الخدمة'}
+              {loading ? "جاري الإضافة..." : "إضافة الخدمة"}
             </button>
           </div>
         </form>

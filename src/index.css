@@ -2,16 +2,14 @@
 @import "leaflet-geosearch/dist/geosearch.css";
 @import "tailwindcss";
 
-
 body {
-    background-color: #4A352F; 
-    color: #f5f1e8; 
-    font-family: 'Kumbh Sans', sans-serif;
+  background-color: #4a352f;
+  color: #f5f1e8;
+  font-family: "Kumbh Sans", sans-serif;
 }
-
 
 .leaflet-container {
   text-align: right;
-  direction: rtl; 
+  direction: rtl;
   background-color: #e0e0e0;
 }

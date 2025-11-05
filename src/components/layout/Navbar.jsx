@@ -1,22 +1,28 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext'; 
-import { useCart } from '../../context/CartContext'; 
-import { auth } from '../../firebase/firebaseConfig';
-import { signOut } from 'firebase/auth';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { useCart } from "../../context/CartContext";
+import { auth } from "../../firebase/firebaseConfig";
+import { signOut } from "firebase/auth";
 
-import { FaSignOutAlt, FaPlusCircle, FaTh, FaCalendarAlt, FaShoppingCart } from 'react-icons/fa'; 
-import KashtaLogo from '../../assets/Kashtalogo.png';
+import {
+  FaSignOutAlt,
+  FaPlusCircle,
+  FaTh,
+  FaCalendarAlt,
+  FaShoppingCart,
+} from "react-icons/fa";
+import KashtaLogo from "../../assets/Kashtalogo.png";
 
 function Navbar() {
   const { currentUser, userRole } = useAuth();
-  const { cartItems } = useCart(); 
+  const { cartItems } = useCart();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate('/login');
+      navigate("/login");
     } catch (err) {
       console.error("خطأ في تسجيل الخروج:", err);
     }
@@ -25,46 +31,64 @@ function Navbar() {
   return (
     <nav className="bg-[#d8ceb8ff] text-[#3e2723] shadow-md py-4 sticky top-0 z-[1000]">
       <div className="container mx-auto px-6 flex justify-between items-center">
-        
-       
-        <Link to="/" className="text-2xl font-bold text-[#3e2723] flex items-center gap-2 hover:text-[#e48a4e] transition-colors">
+        <Link
+          to="/"
+          className="text-2xl font-bold text-[#3e2723] flex items-center gap-2 hover:text-[#e48a4e] transition-colors"
+        >
           {<img src={KashtaLogo} alt="KASHTA Logo" className="h-15 w-auto" />}
         </Link>
 
-       
         <div className="flex items-center gap-6">
-          <Link to="/about-us" className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200">
+          <Link
+            to="/about-us"
+            className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200"
+          >
             من نحن
           </Link>
-          <Link to="/services" className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200">
+          <Link
+            to="/services"
+            className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200"
+          >
             الخدمات
           </Link>
-          <Link to="/" className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200">
+          <Link
+            to="/"
+            className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200"
+          >
             الرئيسية
           </Link>
-          
-          {currentUser && userRole === 'provider' && (
+
+          {currentUser && userRole === "provider" && (
             <>
-              <Link to="/add-service" className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200 flex items-center gap-1">
+              <Link
+                to="/add-service"
+                className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200 flex items-center gap-1"
+              >
                 <FaPlusCircle size={18} /> إضافة خدمة
               </Link>
-              <Link to="/manage-bookings" className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200 flex items-center gap-1">
+              <Link
+                to="/manage-bookings"
+                className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200 flex items-center gap-1"
+              >
                 <FaTh size={18} /> إدارة الحجوزات
               </Link>
             </>
           )}
-          {currentUser && userRole === 'customer' && (
-            <Link to="/my-bookings" className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200 flex items-center gap-1">
+          {currentUser && userRole === "customer" && (
+            <Link
+              to="/my-bookings"
+              className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200 flex items-center gap-1"
+            >
               <FaCalendarAlt size={18} /> حجوزاتي
             </Link>
           )}
         </div>
 
-
-        <div className="flex items-center gap-4"> 
-          
-
-          <Link to="/cart" className="relative text-[#3e2723] hover:text-[#e48a4e] transition-colors duration-200">
+        <div className="flex items-center gap-4">
+          <Link
+            to="/cart"
+            className="relative text-[#3e2723] hover:text-[#e48a4e] transition-colors duration-200"
+          >
             <FaShoppingCart size={24} />
             {cartItems.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
@@ -89,7 +113,6 @@ function Navbar() {
             </Link>
           )}
         </div>
-
       </div>
     </nav>
   );

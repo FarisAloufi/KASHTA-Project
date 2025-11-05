@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
-import { db } from '../../firebase/firebaseConfig';
-import { collection, addDoc, serverTimestamp, doc, updateDoc } from 'firebase/firestore';
-import { useAuth } from '../../context/AuthContext'; 
-
+import React, { useState } from "react";
+import { FaStar } from "react-icons/fa";
+import { db } from "../../firebase/firebaseConfig";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
+import { useAuth } from "../../context/AuthContext";
 
 const StarRating = ({ rating, setRating }) => {
   return (
@@ -32,33 +37,32 @@ const StarRating = ({ rating, setRating }) => {
 };
 
 function RatingForm({ booking }) {
-  const { userData } = useAuth(); 
+  const { userData } = useAuth();
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [comment, setComment] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
 
     if (rating === 0 || !comment) {
-      setError('الرجاء اختيار تقييم (نجوم) وكتابة تعليق.');
+      setError("الرجاء اختيار تقييم (نجوم) وكتابة تعليق.");
       return;
     }
     if (!userData) {
-        setError('خطأ: لم يتم العثور على بيانات المستخدم.');
-        return;
+      setError("خطأ: لم يتم العثور على بيانات المستخدم.");
+      return;
     }
     setLoading(true);
 
     try {
-
       await addDoc(collection(db, "ratings"), {
         userId: userData.uid,
-        userName: userData.name, 
+        userName: userData.name,
         serviceId: booking.serviceId,
         serviceName: booking.serviceName,
         bookingId: booking.id,
@@ -67,18 +71,16 @@ function RatingForm({ booking }) {
         createdAt: serverTimestamp(),
       });
 
-
       const bookingDocRef = doc(db, "bookings", booking.id);
       await updateDoc(bookingDocRef, {
-        rated: true
+        rated: true,
       });
 
-      setSuccess('شكراً على تقييمك!');
+      setSuccess("شكراً على تقييمك!");
       setLoading(false);
-
     } catch (err) {
       console.error("خطأ في إرسال التقييم:", err);
-      setError('حدث خطأ. الرجاء المحاولة مرة أخرى.');
+      setError("حدث خطأ. الرجاء المحاولة مرة أخرى.");
       setLoading(false);
     }
   };
@@ -86,22 +88,33 @@ function RatingForm({ booking }) {
   if (success) {
     return (
       <div className="border-t-2 border-dashed border-gray-300 pt-6 mt-6">
-        <p className="bg-green-100 text-green-700 p-4 rounded text-center font-bold">{success}</p>
+        <p className="bg-green-100 text-green-700 p-4 rounded text-center font-bold">
+          {success}
+        </p>
       </div>
     );
   }
 
   return (
     <div className="border-t-2 border-dashed border-gray-300 pt-6 mt-6">
-      <h3 className="text-2xl font-bold text-center mb-4">ما رأيك في الخدمة؟</h3>
-      
-      {error && <p className="bg-red-100 text-red-700 p-3 rounded mb-4 text-center">{error}</p>}
+      <h3 className="text-2xl font-bold text-center mb-4">
+        ما رأيك في الخدمة؟
+      </h3>
+
+      {error && (
+        <p className="bg-red-100 text-red-700 p-3 rounded mb-4 text-center">
+          {error}
+        </p>
+      )}
 
       <form onSubmit={handleSubmit}>
         <StarRating rating={rating} setRating={setRating} />
-        
+
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2 text-right" htmlFor="comment">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2 text-right"
+            htmlFor="comment"
+          >
             اكتب تعليقك
           </label>
           <textarea
@@ -119,7 +132,7 @@ function RatingForm({ booking }) {
           type="submit"
           disabled={loading}
         >
-          {loading ? 'جاري الإرسال...' : 'إرسال التقييم'}
+          {loading ? "جاري الإرسال..." : "إرسال التقييم"}
         </button>
       </form>
     </div>

@@ -1,32 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet';
-import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-import 'leaflet/dist/leaflet.css';
-import 'leaflet-geosearch/dist/geosearch.css';
+import React, { useState, useEffect } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
+import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
+import "leaflet/dist/leaflet.css";
+import "leaflet-geosearch/dist/geosearch.css";
 
-import { isLocationAllowed } from '../../data/serviceZones'; 
-
+import { isLocationAllowed } from "../../data/serviceZones";
 
 const containerStyle = {
-  width: '100%',
-  height: '400px',
-  borderRadius: '8px'
+  width: "100%",
+  height: "400px",
+  borderRadius: "8px",
 };
-const center = [24.7136, 46.6753]; 
-
+const center = [24.7136, 46.6753];
 
 function MapClickHandler({ onLocationChange, setMarkerPosition, mode }) {
   useMapEvents({
     click(e) {
       const newPos = [e.latlng.lat, e.latlng.lng];
 
-   
-      if (mode === 'set') {
-   
+      if (mode === "set") {
         setMarkerPosition(newPos);
         onLocationChange({ lat: newPos[0], lng: newPos[1] });
       } else {
-
         if (isLocationAllowed(newPos[0], newPos[1])) {
           setMarkerPosition(newPos);
           onLocationChange({ lat: newPos[0], lng: newPos[1] });
@@ -40,24 +41,23 @@ function MapClickHandler({ onLocationChange, setMarkerPosition, mode }) {
 }
 
 function SearchField({ setMarkerPosition, onLocationChange, mode }) {
-  const map = useMap(); 
-  
+  const map = useMap();
+
   useEffect(() => {
     const provider = new OpenStreetMapProvider();
     const searchControl = new GeoSearchControl({
       provider: provider,
-      style: 'bar',
+      style: "bar",
       autoClose: true,
       keepResult: true,
-      searchLabel: 'ابحث عن حي أو مكان...'
+      searchLabel: "ابحث عن حي أو مكان...",
     });
     map.addControl(searchControl);
 
     const onResult = (e) => {
-      const newPos = [e.location.y, e.location.x]; 
+      const newPos = [e.location.y, e.location.x];
 
-    
-      if (mode === 'set') {
+      if (mode === "set") {
         setMarkerPosition(newPos);
         onLocationChange({ lat: newPos[0], lng: newPos[1] });
       } else {
@@ -70,38 +70,40 @@ function SearchField({ setMarkerPosition, onLocationChange, mode }) {
       }
     };
 
-    map.on('geosearch/showlocation', onResult);
-    return () => { map.removeControl(searchControl); map.off('geosearch/showlocation', onResult); };
+    map.on("geosearch/showlocation", onResult);
+    return () => {
+      map.removeControl(searchControl);
+      map.off("geosearch/showlocation", onResult);
+    };
   }, [map, setMarkerPosition, onLocationChange, mode]);
 
   return null;
 }
 
-
-function MapPicker({ onLocationChange, mode = 'booking' }) { 
+function MapPicker({ onLocationChange, mode = "booking" }) {
   const [markerPosition, setMarkerPosition] = useState(center);
 
   return (
-    <MapContainer 
-      center={center} 
-      zoom={10} 
+    <MapContainer
+      center={center}
+      zoom={10}
       style={containerStyle}
-      zoomControl={true} 
+      zoomControl={true}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      
+
       <Marker position={markerPosition} />
 
-      <MapClickHandler 
+      <MapClickHandler
         onLocationChange={onLocationChange}
         setMarkerPosition={setMarkerPosition}
-        mode={mode} 
+        mode={mode}
       />
-      
-      <SearchField 
+
+      <SearchField
         onLocationChange={onLocationChange}
         setMarkerPosition={setMarkerPosition}
         mode={mode}
