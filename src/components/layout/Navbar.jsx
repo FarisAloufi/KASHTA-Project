@@ -35,7 +35,7 @@ function Navbar() {
           to="/"
           className="text-2xl font-bold text-[#3e2723] flex items-center gap-2 hover:text-[#e48a4e] transition-colors"
         >
-          {<img src={KashtaLogo} alt="KASHTA Logo" className="h-15 w-auto" />}
+          {<img src={KashtaLogo} alt="KASHTA Logo" className="h-30 w-30" />}
         </Link>
 
         <div className="flex items-center gap-6">

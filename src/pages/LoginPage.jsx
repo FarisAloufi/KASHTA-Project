@@ -20,13 +20,6 @@ function LoginPage() {
     setError("");
 
     try {
-       const usersRef = doc(db, "emailToUid", email.toLowerCase());
-    const userSnap = await getDoc(usersRef);
-
-    if (!userSnap.exists()) {
-      setError("هذا الحساب غير مسجل. يرجى إنشاء حساب أولاً.");
-      return;
-    }
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (err) {
@@ -44,27 +37,32 @@ function LoginPage() {
   };
 
   const handleGoogleLogin = async () => {
-  try {
-    const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
 
-    // ✅ تحقق من وجود الإيميل في Firestore
-    const usersRef = doc(db, "emailToUid", user.email.toLowerCase());
-    const userSnap = await getDoc(usersRef);
+      const user = result.user;
 
-    if (!userSnap.exists()) {
-      setError("هذا الحساب غير مسجل. يرجى إنشاء حساب أولاً.");
-      await auth.signOut();
-      return;
+      // Check if user already exists
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        await setDoc(userRef, {
+          uid: user.uid,
+          name: user.displayName,
+          email: user.email,
+          role: "customer",
+          createdAt: new Date(),
+        });
+      }
+
+      navigate("/");
+    } catch (err) {
+      console.error("Google Login Error:", err);
+      setError("حدث خطأ أثناء تسجيل الدخول عبر Google.");
     }
-
-    navigate("/");
-  } catch (err) {
-    console.error("Google Login Error:", err);
-    setError("حدث خطأ أثناء تسجيل الدخول عبر Google.");
-  }
-};
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#4A352F] p-6">
@@ -123,7 +121,7 @@ function LoginPage() {
             تسجيل الدخول
           </button>
 
-          
+          {/* Google Button */}
           <button
             onClick={handleGoogleLogin}
             type="button"
