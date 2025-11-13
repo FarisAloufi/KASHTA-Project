@@ -47,7 +47,7 @@ function BookingCard({ booking, children }) {
   return (
     <Link
       to={`/booking/${booking.id}`}
-      className="block bg-[#d8ceb8ff] rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+      className="block bg-second-bg rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300"
     >
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">

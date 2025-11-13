@@ -57,8 +57,8 @@ function AddServicePage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="max-w-2xl w-full bg-[#d8ceb8ff] text-[#3e2723] rounded-3xl shadow-2xl p-10 border border-dark-brown/10">
-        <h1 className="text-4xl font-extrabold text-center text-[#3e2723] mb-10">
+      <div className="max-w-2xl w-full bg-second-bg text-main-text rounded-3xl shadow-2xl p-10 border border-main-bg/10">
+        <h1 className="text-4xl font-extrabold text-center text-main-text mb-10">
           إضافة خدمة جديدة
         </h1>
 
@@ -76,7 +76,7 @@ function AddServicePage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label
-              className="block text-[#3e2723] text-base font-semibold mb-2 text-right"
+              className="block text-main-text text-base font-semibold mb-2 text-right"
               htmlFor="name"
             >
               اسم الخدمة (مثل: خيمة ملكية)
@@ -93,7 +93,7 @@ function AddServicePage() {
 
           <div>
             <label
-              className="block text-[#3e2723] text-base font-semibold mb-2 text-right"
+              className="block text-main-text text-base font-semibold mb-2 text-right"
               htmlFor="description"
             >
               وصف الخدمة
@@ -112,7 +112,7 @@ function AddServicePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label
-                className="block text-[#3e2723] text-base font-semibold mb-2 text-right"
+                className="block text-main-text text-base font-semibold mb-2 text-right"
                 htmlFor="price"
               >
                 السعر (بالريال)
@@ -128,7 +128,7 @@ function AddServicePage() {
             </div>
             <div>
               <label
-                className="block text-[#3e2723] text-base font-semibold mb-2 text-right"
+                className="block text-main-text text-base font-semibold mb-2 text-right"
                 htmlFor="imageUrl"
               >
                 رابط صورة الخدمة (Cloudinary)
@@ -147,7 +147,7 @@ function AddServicePage() {
 
           <div className="flex items-center justify-center pt-4">
             <button
-              className="bg-black text-white font-bold py-3 px-8 rounded-xl focus:outline-none focus:shadow-outline text-lg transition shadow-lg disabled:bg-gray-400 hover:bg-gray-800"
+              className="w-full bg-black text-white px-10 py-4 rounded-2xl font-black text-lg shadow-2xl hover:shadow-gray-800/50 hover:scale-105 transition-all duration-300"
               type="submit"
               disabled={loading}
             >

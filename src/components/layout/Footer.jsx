@@ -6,16 +6,16 @@ import KashtaLogo from "../../assets/Kashtalogo.png";
 
 function Footer() {
   return (
-    <footer className="bg-[#d8ceb8ff] text-[#3e2723] py-12 mt-auto shadow-inner border-t border-[#3e2723]/20">
+    <footer className="bg-second-bg text-main-text py-12 mt-auto shadow-inner border-t border-main-text/20">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* About Section */}
         <div>
           <img
             src={KashtaLogo}
             alt="KASHTA Logo"
-            className="h-12 w-auto mb-4"
+            className="h-24 w-24 mb-4"
           />
-          <p className="text-[#3e2723]/90">
+          <p className="text-main-text/90">
             وجهتك الأولى لحجز أفضل الخيام والمستلزمات لرحلات التخييم.
           </p>
         </div>
@@ -27,7 +27,7 @@ function Footer() {
             <li>
               <Link
                 to="/"
-                className="text-[#3e2723]/90 hover:text-[#e48a4e] transition-colors duration-200"
+                className="text-main-text/90 hover:text-main-accent transition-colors duration-200"
               >
                 الرئيسية
               </Link>
@@ -35,7 +35,7 @@ function Footer() {
             <li>
               <Link
                 to="/about-us"
-                className="text-[#3e2723]/90 hover:text-[#e48a4e] transition-colors duration-200"
+                className="text-main-text/90 hover:text-main-accent transition-colors duration-200"
               >
                 عن كشتة
               </Link>
@@ -50,7 +50,7 @@ function Footer() {
             <li>
               <Link
                 to="/add-service"
-                className="text-[#3e2723]/90 hover:text-[#e48a4e] transition-colors duration-200"
+                className="text-main-text/90 hover:text-main-accent transition-colors duration-200"
               >
                 إضافة خدمة
               </Link>
@@ -58,7 +58,7 @@ function Footer() {
             <li>
               <Link
                 to="/manage-bookings"
-                className="text-[#3e2723]/90 hover:text-[#e48a4e] transition-colors duration-200"
+                className="text-main-text/90 hover:text-main-accent transition-colors duration-200"
               >
                 إدارة الحجوزات
               </Link>
@@ -72,19 +72,19 @@ function Footer() {
           <div className="flex space-x-2">
             <a
               href="#"
-              className="text-[#3e2723] hover:text-[#e48a4e] transition-colors duration-200"
+              className="text-main-text/90 hover:text-main-accent transition-colors duration-200"
             >
               <FaFacebook size={24} />
             </a>
             <a
               href="#"
-              className="text-[#3e2723] hover:text-[#e48a4e] transition-colors duration-200"
+              className="text-main-text/90 hover:text-main-accent transition-colors duration-200"
             >
               <FaTwitter size={24} />
             </a>
             <a
               href="#"
-              className="text-[#3e2723] hover:text-[#e48a4e] transition-colors duration-200"
+              className="text-main-text/90 hover:text-main-accent transition-colors duration-200"
             >
               <FaInstagram size={24} />
             </a>
@@ -92,7 +92,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-[#3e2723]/20 mt-8 pt-8 text-center text-[#3e2723]/80">
+      <div className="border-t border-main-text mt-8 pt-8 text-center text-main-text">
         <p>&copy; {new Date().getFullYear()} كشتة. جميع الحقوق محفوظة.</p>
       </div>
     </footer>

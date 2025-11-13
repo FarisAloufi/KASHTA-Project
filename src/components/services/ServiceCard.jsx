@@ -32,7 +32,7 @@ function ServiceCard({ service, userRole, onDelete }) {
   };
 
   return (
-    <div className="group relative bg-[#d8ceb8ff] text-[#3e2723] rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-dark-brown/10">
+<div className="group relative bg-second-bg text-main-text rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-main-text/10">
       {/* (4) زر الحذف */}
       {userRole === "provider" && (
         <button
@@ -57,7 +57,7 @@ function ServiceCard({ service, userRole, onDelete }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
           {service.rating >= 4.5 && (
-            <div className="absolute top-4 right-4 bg-accent-orange text-[#3e2723] px-3 py-1.5 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg">
+            <div className="absolute top-4 right-4 bg-accent-orange text-main-text px-3 py-1.5 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg">
               <Award size={14} />
               <span>الأفضل</span>
             </div>
@@ -65,25 +65,25 @@ function ServiceCard({ service, userRole, onDelete }) {
         </div>
       </Link>
       <div className="p-6">
-        <h3 className="text-2xl font-bold text-[#3e2723] mb-3 group-hover:text-accent-orange transition-colors">
+        <h3 className="text-2xl font-bold text-main-text mb-3 group-hover:text-accent-orange transition-colors">
           {service.name}
         </h3>
 
         <div className="flex items-center gap-3 mb-4" dir="rtl">
           {/* (5) صار يستخدم كومبوننت النجوم اللي فوق */}
           <StarsReadOnly rating={service.rating} size={18} />
-          <span className="text-lg font-bold text-[#3e2723]">
+          <span className="text-lg font-bold text-main-text">
             {service.rating}
           </span>
-          <span className="text-sm text-[#3e2723]">
+          <span className="text-sm text-main-text">
             ({service.ratingCount} تقييم)
           </span>
         </div>
 
-        <div className="flex justify-between items-center pt-5 border-t border-dark-brown/10">
+<div className="flex justify-between items-center pt-5 border-t border-main-text">
           <div>
-            <div className="text-sm text-dark-brown/70 mb-1">السعر يبدأ من</div>
-            <span className="text-3xl font-black text-dark-brown">
+<div className="text-sm text-main-text/70 mb-1 ">السعر يبدأ من</div>
+<span className="text-3xl font-black text-main-text">
               {service.price} ريال
             </span>
           </div>

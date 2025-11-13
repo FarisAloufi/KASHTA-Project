@@ -125,30 +125,23 @@ function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <header className="relative bg-dark-brown text-light-beige py-24 md:py-32 overflow-hidden">
+      <header className="relative bg-main-bg text-second-text py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-              backgroundSize: "40px 40px",
-            }}
-          ></div>
+      
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/20">
               <Sparkles className="w-4 h-4 text-accent-orange" />
-              <span className="text-sm font-medium">
+              <span className="font-medium">
                 منصة الكشتات الأولى في المملكة
               </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
               جهز كشتتك
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent-orange to-orange-300">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-main-accent to-black">
                 !بخطوة واحدة
               </span>
             </h1>
@@ -179,36 +172,35 @@ function HomePage() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
+            {/* <path
               d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-              fill="#d8ceb8ff"
-            />
+              fill="sec"
+            /> */}
           </svg>
         </div>
       </header>
 
-      <section className="bg-light-beige container mx-auto px-6 py-20 rounded-t-3xl shadow-xl -mt-12 relative z-20">
-        <div className="text-center mb-16">
+<section className="bg-second-bg text-main-text py-20 rounded-b-3xl shadow-xl -mt-12 relative z-20 mb-20">        <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-dark-brown/10 px-4 py-2 rounded-full mb-4">
             <Award className="w-4 h-4 text-dark-brown" />
             <span className="text-sm font-bold text-dark-brown">
               خدمات مميزة
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-dark-brown mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-main-text mb-4">
             الخدمات المتاحة
           </h2>
-          <p className="text-xl text-dark-brown/70 max-w-2xl mx-auto">
+          <p className="text-xl text-main-text/70 max-w-2xl mx-auto">
             اختر من بين مجموعة واسعة من الخيام والمخيمات المجهزة بأحدث المرافق
           </p>
         </div>
 
         {services.length === 0 ? (
           <div className="text-center py-20">
-            <div className="w-24 h-24 bg-[#d8ceb8ff] rounded-full flex items-center justify-center mx-auto mb-4">
-              <MapPin className="w-12 h-12 text-[#3e2723]" />
+            <div className="w-24 h-24 bg-second-bg rounded-full flex items-center justify-center mx-auto mb-4">
+              <MapPin className="w-12 h-12 text-main-text" />
             </div>
-            <p className="text-xl text-dark-brown/60">
+            <p className="text-xl text-main-text/60">
               لا توجد خدمات متاحة حالياً
             </p>
           </div>
@@ -227,19 +219,19 @@ function HomePage() {
       </section>
 
       {testimonials.length > 0 && (
-        <section className="bg-dark-brown py-20 border-y border-dark-brown/20">
+        <section className="bg-main-bg py-20 border-y border-main-text">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-light-beige/10 px-4 py-2 rounded-full mb-4 shadow-sm">
-                <Users className="w-4 h-4 text-light-beige" />
-                <span className="text-sm font-bold text-light-beige">
+              <div className="inline-flex items-center gap-2 bg-black px-4 py-2 rounded-full mb-4 shadow-sm">
+                <Users className="w-4 h-4 text-second-text" />
+                <span className="text-sm font-bold text-second-text">
                   آراء العملاء
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-light-beige mb-4">
+              <h2 className="text-4xl md:text-5xl font-black text-second-text mb-4">
                 ماذا يقول عملاؤنا؟
               </h2>
-              <p className="text-xl text-light-beige/70">
+              <p className="text-xl text-second-text">
                 تجارب حقيقية من عملاء سعداء
               </p>
             </div>
@@ -248,25 +240,25 @@ function HomePage() {
               {testimonials.map((review, index) => (
                 <div
                   key={index}
-                  className="bg-[#d8ceb8ff] text-[#3e2723] p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-dark-brown/10 hover:-translate-y-1"
+                  className="bg-second-bg text-main-text p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-dark-brown/10 hover:-translate-y-1"
                 >
                   <div className="mb-4" dir="rtl">
                     <StarsReadOnly rating={review.rating} size={22} />
                   </div>
 
-                  <p className="text-[#3e2723] text-lg leading-relaxed mb-6 italic">
+                  <p className="text-main-text text-lg leading-relaxed mb-6 italic">
                     "{review.comment}"
                   </p>
 
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-accent-orange rounded-full flex items-center justify-center text-[#3e2723] font-bold text-lg">
-                      {review.userName?.charAt(0) || "ع"}
+                    <div className="w-12 h-12 bg-main-accent- rounded-full flex items-center justify-center text-[#3e2723] font-bold text-lg">
+                      {review.userName?.charAt(0) || ""}
                     </div>
                     <div className="text-right">
                       <p className="text-dark-brown font-bold text-lg">
                         {review.userName || "عميل"}
                       </p>
-                      <p className="text-gray-600 text-sm">عميل معتمد</p>
+                      
                     </div>
                   </div>
                 </div>
@@ -276,12 +268,12 @@ function HomePage() {
         </section>
       )}
 
-      <section className="bg-light-beige py-20">
+      <section className="bg-main-bg py-20">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-dark-brown mb-6">
+          <h2 className="text-4xl md:text-5xl font-black text-second-text mb-6">
             جاهز لتجربة لا تُنسى؟
           </h2>
-          <p className="text-xl text-dark-brown/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-second-text/90 mb-8 max-w-2xl mx-auto">
             احجز خيمتك اليوم واستمتع بأفضل تجربة كشتة مع عائلتك وأصدقائك
           </p>
 

@@ -6,116 +6,124 @@ import { auth } from "../../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
 
 import {
-  FaSignOutAlt,
-  FaPlusCircle,
-  FaTh,
-  FaCalendarAlt,
-  FaShoppingCart,
+  FaSignOutAlt,
+  FaPlusCircle,
+  FaTh,
+  FaCalendarAlt,
+  FaShoppingCart,
 } from "react-icons/fa";
-import KashtaLogo from "../../assets/Kashtalogo.png";
+import KashtaLogo from "../../assets/Kashtalogo.png"; 
+
 
 function Navbar() {
-  const { currentUser, userRole } = useAuth();
-  const { cartItems } = useCart();
-  const navigate = useNavigate();
+  const { currentUser, userRole } = useAuth();
+  const { cartItems } = useCart();
+  const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      navigate("/login");
-    } catch (err) {
-      console.error("خطأ في تسجيل الخروج:", err);
-    }
-  };
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (err) {
+      console.error("خطأ في تسجيل الخروج:", err);
+    }
+  };
 
-  return (
-    <nav className="bg-[#d8ceb8ff] text-[#3e2723] shadow-md py-4 sticky top-0 z-[1000]">
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link
-          to="/"
-          className="text-2xl font-bold text-[#3e2723] flex items-center gap-2 hover:text-[#e48a4e] transition-colors"
-        >
-          {<img src={KashtaLogo} alt="KASHTA Logo" className="h-30 w-30" />}
-        </Link>
+  return (
+    <nav className="bg-second-bg text-main-text shadow-md py-2 sticky top-0 z-[1000]">
+      <div className="container mx-auto px-6 flex justify-between items-center">
+        
+        <Link
+          to="/"
+          className="text-2xl font-bold text-main-text flex items-center gap-2 hover:text-main-accent transition-colors"
+        >
+          <img 
+            src={KashtaLogo} 
+            alt="KASHTA Logo" 
+            className="w-16 h-16" 
+          />
+        </Link>
 
-        <div className="flex items-center gap-6">
-          <Link
-            to="/about-us"
-            className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200"
-          >
-            من نحن
-          </Link>
-          <Link
-            to="/services"
-            className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200"
-          >
-            الخدمات
-          </Link>
-          <Link
-            to="/"
-            className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200"
-          >
-            الرئيسية
-          </Link>
+        <div className="flex items-center gap-6">
 
-          {currentUser && userRole === "provider" && (
-            <>
-              <Link
-                to="/add-service"
-                className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200 flex items-center gap-1"
-              >
-                <FaPlusCircle size={18} /> إضافة خدمة
-              </Link>
-              <Link
-                to="/manage-bookings"
-                className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200 flex items-center gap-1"
-              >
-                <FaTh size={18} /> إدارة الحجوزات
-              </Link>
-            </>
-          )}
-          {currentUser && userRole === "customer" && (
-            <Link
-              to="/my-bookings"
-              className="text-[#3e2723] hover:text-[#e48a4e] font-bold text-base transition-colors duration-200 flex items-center gap-1"
-            >
-              <FaCalendarAlt size={18} /> حجوزاتي
-            </Link>
-          )}
-        </div>
+          {currentUser && userRole === "provider" && (
+            <>
+              <Link
+                to="/manage-bookings"
+                className="text-main-text hover:text-main-accent font-bold text-base transition-colors duration-200 flex items-center gap-1"
+              >
+                <FaTh size={18} /> إدارة الحجوزات
+              </Link>
+              <Link
+                to="/add-service"
+                className="text-main-text hover:text-main-accent font-bold text-base transition-colors duration-200 flex items-center gap-1"
+              >
+                <FaPlusCircle size={18} /> إضافة خدمة
+              </Link>
+            </>
+          )}
+          {currentUser && userRole === "customer" && (
+            <Link
+              to="/my-bookings"
+              className="text-main-text hover:text-main-accent font-bold text-base transition-colors duration-200 flex items-center gap-1"
+            >
+              <FaCalendarAlt size={18} /> حجوزاتي
+            </Link>
+          )}
 
-        <div className="flex items-center gap-4">
-          <Link
-            to="/cart"
-            className="relative text-[#3e2723] hover:text-[#e48a4e] transition-colors duration-200"
-          >
-            <FaShoppingCart size={24} />
-            {cartItems.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                {cartItems.length}
-              </span>
-            )}
-          </Link>
+          <Link
+            to="/about-us"
+            className="text-main-text hover:text-main-accent font-bold text-base transition-colors duration-200"
+s        >
+            من نحن
+          </Link>
+          <Link
+            to="/services"
+            className="text-main-text hover:text-main-accent font-bold text-base transition-colors duration-200"
+          >
+            الخدمات
+          </Link>
+          <Link
+            to="/"
+            className="text-main-text hover:text-main-accent font-bold text-base transition-colors duration-200"
+          >
+            الرئيسية
+          </Link>
+        </div>
 
-          {currentUser ? (
-            <button
-              onClick={handleLogout}
-              className="bg-[#3e2723] text-white px-4 py-2 rounded-full hover:bg-[#2c1810] transition-colors duration-200 flex items-center gap-1 text-base font-bold shadow-md"
-            >
-              <FaSignOutAlt size={16} /> تسجيل الخروج
-            </button>
-          ) : (
-            <Link
-              to="/login"
-              className="bg-[#3e2723] text-white px-4 py-2 rounded-full hover:bg-[#2c1810] transition-colors duration-200 text-base font-bold shadow-md"
-            >
-              تسجيل / تسجيل الدخول
-            </Link>
-          )}
-        </div>
-      </div>
-    </nav>
-  );
+        
+        <div className="flex items-center gap-4">
+          <Link
+            to="/cart"
+            className="relative text-main-text hover:text-main-accent transition-colors duration-200"
+          >
+            <FaShoppingCart size={24} />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                {cartItems.length}
+              </span>
+            )}
+          </Link>
+
+          {currentUser ? (
+            <button
+              onClick={handleLogout}
+              className="bg-main-bg text-white px-4 py-2 rounded-full hover:text-main-accent transition-colors duration-200 flex items-center gap-1 text-base font-bold shadow-md"
+            >
+              <FaSignOutAlt size={16} /> تسجيل الخروج
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-main-bg text-white px-4 py-2 rounded-full hover:text-main-accent transition-colors duration-200 text-base font-bold shadow-md"
+            >
+              تسجيل / تسجيل الدخول
+            </Link>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;

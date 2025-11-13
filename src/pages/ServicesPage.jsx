@@ -73,9 +73,9 @@ function ServicesPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-kashta-bg">
+      <div className="flex items-center justify-center min-h-screen bg-main-bg">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-kashta-accent border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-main-accent border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <h1 className="text-2xl font-bold text-light-beige">
             جاري تحميل الخدمات...
           </h1>
@@ -85,29 +85,29 @@ function ServicesPage() {
   }
 
   return (
-    <div className="bg-kashta-bg min-h-screen">
-      <section className="bg-kashta-beige text-kashta-brown container mx-auto px-6 py-20 rounded-t-3xl shadow-xl mt-12 relative z-20">
+    <div className="bg-main-bg min-h-screen">
+      <section className="bg-second-bg text-main-text container mx-auto px-6 py-20 rounded-3xl shadow-xl mt-12 relative z-20 mb-20">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-kashta-brown/10 px-4 py-2 rounded-full mb-4">
-            <Award className="w-4 h-4 text-kashta-brown" />
-            <span className="text-sm font-bold text-kashta-brown">
+         <div className="inline-flex items-center gap-2 bg-black px-4 py-2 rounded-full mb-4 shadow-sm">
+            <Award className="w-4 h-4 text-second-text" />
+            <span className="text-sm font-bold text-second-text">
               خدمات مميزة
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-kashta-brown mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-main-text mb-4">
             جميع الخدمات
           </h2>
-          <p className="text-xl text-kashta-brown/70 max-w-2xl mx-auto">
+          <p className="text-xl text-main-text/70 max-w-2xl mx-auto">
             اختر من بين مجموعة واسعة من الخيام والمخيمات المجهزة بأحدث المرافق
           </p>
         </div>
 
         {services.length === 0 ? (
           <div className="text-center py-20">
-            <div className="w-24 h-24 bg-kashta-brown/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <MapPin className="w-12 h-12 text-kashta-brown/40" />
+            <div className="w-24 h-24 bg-main-bg/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <MapPin className="w-12 h-12 text-main-text/40" />
             </div>
-            <p className="text-xl text-kashta-brown/60">
+            <p className="text-xl text-main-text/60">
               لا توجد خدمات متاحة حالياً
             </p>
           </div>

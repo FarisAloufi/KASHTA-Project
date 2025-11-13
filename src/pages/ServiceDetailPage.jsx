@@ -145,7 +145,7 @@ function ServiceDetailPage() {
 
   if (loading) {
     return (
-      <h1 className="text-center text-2xl p-10 text-light-beige">
+      <h1 className="text-center text-2xl p-10 text-second-text">
         جاري تحميل الخدمة...
       </h1>
     );
@@ -164,18 +164,18 @@ function ServiceDetailPage() {
     .slice(0, 16);
 
   return (
-    <div className="bg-kashta-bg min-h-screen py-10 text-light-beige">
+    <div className="bg-main-bg min-h-screen py-10 text-second-text">
       <div className="container mx-auto p-6 max-w-4xl space-y-12">
-        <section className="bg-[#d8ceb8ff] text-[#3e2723] p-6 rounded-2xl shadow-xl border border-dark-brown/10">
-          <h1 className="text-4xl font-extrabold text-[#3e2723] mb-3">
+        <section className="bg-second-bg text-main-text p-6 rounded-2xl shadow-xl border border-black/50">
+          <h1 className="text-4xl font-extrabold text-main-text mb-3">
             {service.name}
           </h1>
           <div className="flex items-center space-x-2 space-x-reverse mb-6">
             <StarsReadOnly rating={averageRating.average} size={24} />
-            <span className="text-2xl font-bold text-[#e48a4e]">
+            <span className="text-2xl font-bold text-main-accent">
               {averageRating.average}
             </span>
-            <span className="text-lg text-gray-500">
+            <span className="text-lg text-main-text">
               ({averageRating.count} تقييم)
             </span>
           </div>
@@ -184,22 +184,24 @@ function ServiceDetailPage() {
             alt={service.name}
             className="w-full h-96 object-cover rounded-xl shadow-lg mb-6"
           />
-          <div className="bg-kashta-brown/10 p-4 rounded-xl mb-6 text-center font-bold text-[#3e2723]">
+          <div className="bg-second-bg p-4 rounded-xl mb-6 text-center font-bold text-main-text">
             <p className="text-3xl">السعر: {service.price} ريال / الليلة</p>
           </div>
-          <h3 className="text-2xl font-bold text-[#3e2723] mt-6 mb-3 border-b border-dark-brown/20 pb-2">
+          <h3 className="text-2xl font-bold text-main-text mt-6 mb-3 border-b border-black/50 pb-2">
             تفاصيل الخدمة
           </h3>
-          <p className="text-[#3e2723] text-lg whitespace-pre-wrap">
+          <p className="text-main-text text-lg whitespace-pre-wrap">
             {service.description || "لا يوجد وصف متوفر حالياً."}
           </p>
+
+          
         </section>
 
         <section
-          className="bg-[#d8ceb8ff] text-[#3e2723] p-6 rounded-2xl shadow-2xl border-2 border-[#3e2723]"
+          className="bg-second-bg text-main-text p-6 rounded-2xl shadow-2xl border-2 border-main-bg/70"
           id="booking-section"
         >
-          <h2 className="text-3xl font-extrabold text-center mb-6 text-[#3e2723]">
+          <h2 className="text-3xl font-extrabold text-center mb-6 text-main-text">
             إضافة للسلة
           </h2>
 
@@ -213,14 +215,14 @@ function ServiceDetailPage() {
             <div>
               <label
                 htmlFor="date"
-                className="block text-[#3e2723] font-bold mb-2"
+                className="block text-main-text font-bold mb-2"
               >
                 اختر تاريخ ووقت "الكشتة"
               </label>
               <input
                 type="datetime-local"
                 id="date"
-                className="shadow appearance-none border rounded-xl w-full py-3 px-4 text-[#3e2723] leading-tight focus:outline-none focus:ring-2 focus:ring-black transition"
+                className="shadow appearance-none border rounded-xl w-full py-3 px-4 text-main-text leading-tight focus:outline-none focus:ring-2 focus:ring-black transition"
                 value={bookingDate}
                 onChange={(e) => setBookingDate(e.target.value)}
                 min={minDate}
@@ -229,7 +231,7 @@ function ServiceDetailPage() {
             </div>
 
             <div>
-              <label className="block text-[#3e2723] font-bold mb-2">
+              <label className="block text-main-text font-bold mb-2">
                 حدد الموقع على الخريطة
               </label>
               <MapPicker onLocationChange={setLocation} />
@@ -237,7 +239,7 @@ function ServiceDetailPage() {
 
             <button
               type="submit"
-              className="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-4 rounded-xl text-xl transition shadow-lg disabled:bg-gray-400"
+              className="w-full bg-black text-white px-10 py-4 rounded-2xl font-black text-lg shadow-2xl hover:shadow-gray-800/50 hover:scale-105 transition-all duration-300"
               disabled={bookingLoading}
             >
               {bookingLoading ? "جاري الإضافة..." : "أضف إلى السلة"}
@@ -245,11 +247,11 @@ function ServiceDetailPage() {
           </form>
         </section>
 
-        <hr className="border-t-2 border-light-beige/20" />
+        <hr className="border-t-2 border-black" />
 
         {similarServices.length > 0 && (
-          <section className="bg-[#d8ceb8ff] text-[#3e2723] p-6 rounded-2xl shadow-xl border border-dark-brown/10">
-            <h3 className="text-3xl font-extrabold text-[#3e2723] mb-6">
+          <section className="bg-second-bg text-main-text p-6 rounded-2xl shadow-xl border border-main-bg/70">
+            <h3 className="text-3xl font-extrabold text-main-text mb-6">
               خدمات قد تعجبك
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -265,10 +267,10 @@ function ServiceDetailPage() {
                     className="w-full h-40 object-cover rounded-t-lg"
                   />
                   <div className="p-3">
-                    <p className="text-[#3e2723] font-bold">
+                    <p className="text-main-text font-bold">
                       {simService.name}
                     </p>
-                    <p className="text-[#e48a4e] font-bold">
+                    <p className="text-main-text font-bold">
                       {simService.price} ر.س
                     </p>
                   </div>
@@ -278,10 +280,10 @@ function ServiceDetailPage() {
           </section>
         )}
 
-        <hr className="border-t-2 border-light-beige/20" />
+        <hr className="border-t-2 border-black" />
 
-        <section className="bg-[#d8ceb8ff] text-[#3e2723] p-6 rounded-2xl shadow-xl border border-dark-brown/10">
-          <h3 className="text-3xl font-extrabold text-[#3e2723] mb-6">
+        <section className="bg-second-bg text-main-text p-6 rounded-2xl shadow-xl border border-main-bg/70">
+          <h3 className="text-3xl font-extrabold text-main-text mb-6">
             آراء العملاء ({averageRating.count})
           </h3>
           <div className="space-y-6">
@@ -289,7 +291,7 @@ function ServiceDetailPage() {
               individualRatings.map((rating) => (
                 <div
                   key={rating.id}
-                  className="border-b border-dark-brown/20 py-4 last:border-b-0"
+                  className="border-b border-main-bg/20 py-4 last:border-b-0"
                 >
                   <div className="flex justify-between">
                     <StarsReadOnly rating={rating.rating} size={18} />
@@ -301,7 +303,7 @@ function ServiceDetailPage() {
                         : "..."}
                     </p>
                   </div>
-                  <p className="text-[#3e2723] italic text-lg my-2">
+                  <p className="text-main-text italic text-lg my-2">
                     "{rating.comment}"
                   </p>
                   <p className="text-sm text-gray-600 font-medium">

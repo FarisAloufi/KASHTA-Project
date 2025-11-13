@@ -89,7 +89,7 @@ function BookingDetailPage() {
 
   return (
     <div className="container mx-auto p-6 max-w-3xl">
-      <div className="bg-[#d8ceb8ff] p-6 rounded-lg shadow-lg">
+      <div className="bg-second-bg p-6 rounded-lg shadow-lg">
         <div className="flex justify-between items-start mb-4">
           <div>
             <h1 className="text-4xl font-bold text-gray-900">

@@ -55,21 +55,21 @@ function CartPage() {
   };
 
   return (
-    <div className="bg-kashta-bg min-h-screen py-10 text-light-beige">
+    <div className="bg-main-bg min-h-screen py-10 text-second-text">
       <div className="container mx-auto p-6 max-w-4xl">
         <h1 className="text-4xl font-extrabold text-light-beige text-center mb-10">
           سلة الحجوزات
         </h1>
 
         {cartItems.length === 0 ? (
-          <div className="text-center bg-[#d8ceb8ff] text-[#3e2723] p-10 rounded-2xl shadow-lg">
+          <div className="text-center bg-second-bg text-main-text p-10 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-bold mb-4">سلّتك فاضية!</h2>
             <p className="text-lg mb-6">
               شكلك ما اخترت كشتتك للحين. تصفح خدماتنا!
             </p>
             <Link
               to="/services"
-              className="bg-black text-white px-8 py-3 rounded-xl font-bold text-lg shadow-md hover:bg-[#3e2723] transition-all"
+              className="bg-black text-white px-8 py-3 rounded-2xl font-black text-lg shadow-2xl hover:shadow-gray-800/50 hover:scale-105 transition-all duration-300"
             >
               تصفح الخدمات
             </Link>
@@ -80,7 +80,7 @@ function CartPage() {
               {cartItems.map((item) => (
                 <div
                   key={item.cartId}
-                  className="bg-[#d8ceb8ff] text-[#3e2723] p-4 rounded-2xl shadow-lg flex items-center justify-between"
+                  className="bg-second-bg text-main-text p-4 rounded-2xl shadow-lg flex items-center justify-between"
                 >
                   <div className="flex items-center gap-4">
                     <img
@@ -113,8 +113,8 @@ function CartPage() {
             </div>
 
             <div className="md:col-span-1">
-              <div className="bg-[#d8ceb8ff] text-[#3e2723] p-6 rounded-2xl shadow-lg sticky top-28">
-                <h3 className="text-2xl font-bold mb-4 border-b border-[#3e2723]/20 pb-2">
+              <div className="bg-second-bg text-main-text p-6 rounded-2xl shadow-lg sticky top-28">
+                <h3 className="text-2xl font-bold mb-4 border-b border-main-text/20 pb-2">
                   ملخص السلة
                 </h3>
                 <div className="flex justify-between items-center mb-2">
@@ -137,7 +137,7 @@ function CartPage() {
                 <button
                   onClick={handleCheckout}
                   disabled={loading}
-                  className="bg-[#3e2723] text-white w-full py-3 rounded-xl font-bold text-lg shadow-md hover:bg-black transition disabled:bg-gray-400"
+                  className="bg-main-text text-white w-full py-3 rounded-xl font-bold text-lg shadow-md hover:bg-black transition disabled:bg-gray-400"
                 >
                   {loading ? "جاري إرسال الطلبات..." : "إتمام الحجز"}
                 </button>

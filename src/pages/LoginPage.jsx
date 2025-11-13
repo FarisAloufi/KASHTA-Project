@@ -65,8 +65,8 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#4A352F] p-6">
-      <div className="max-w-md w-full bg-[#d8ceb8ff] rounded-3xl shadow-2xl p-10 border border-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-main-bg p-6">
+      <div className="max-w-md w-full bg-second-bg rounded-3xl shadow-2xl p-10 border border-main-bg-70">
         <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-8">
           تسجيل الدخول
         </h2>
