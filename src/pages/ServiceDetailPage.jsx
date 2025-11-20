@@ -125,9 +125,9 @@ function ServiceDetailPage() {
   const [submittingReply, setSubmittingReply] = useState(false);
 
   const [newCommentText, setNewCommentText] = useState("");
-  const [newRatingValue, setNewRatingValue] = useState(0); // لتخزين تقييم العميل
+  const [newRatingValue, setNewRatingValue] = useState(0); 
   const [submittingComment, setSubmittingComment] = useState(false);
-  const [hasPurchased, setHasPurchased] = useState(false); // 2. حالة التحقق من الشراء
+  const [hasPurchased, setHasPurchased] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -142,10 +142,9 @@ function ServiceDetailPage() {
         );
         const ratingsPromise = getDocs(ratingsQuery);
 
-        // --- التحقق من شراء العميل للخدمة ---
         if (currentUser) {
            const bookingsRef = collection(db, "bookings");
-           // نبحث عن طلبات المستخدم التي تحتوي على هذه الخدمة وتكون مكتملة
+        
            const bookingsQuery = query(
               bookingsRef, 
               where("userId", "==", currentUser.uid)
@@ -154,7 +153,7 @@ function ServiceDetailPage() {
               let found = false;
               snapshot.forEach(doc => {
                   const data = doc.data();
-                  // نتأكد أن الحالة مكتملة وأن الخدمة موجودة في قائمة الخدمات
+                 
                   if (data.status === 'completed' && data.services?.some(item => item.serviceId === id)) {
                       found = true;
                   }
@@ -251,7 +250,7 @@ function ServiceDetailPage() {
     return () => {
       unsubscribeRating();
     };
-  }, [id, currentUser]); // أضفنا currentUser للمراقبة
+  }, [id, currentUser]); 
 
   const handlePostComment = async () => {
     if (!newCommentText.trim()) return;
@@ -263,7 +262,7 @@ function ServiceDetailPage() {
             serviceName: service.name,
             userId: currentUser.uid,
             userName: userData?.name || currentUser.email.split('@')[0] || "عميل",
-            // 3. إذا اشترى المنتج نرسل التقييم، وإلا نرسل 0 (استفسار)
+           
             rating: hasPurchased ? newRatingValue : 0, 
             comment: newCommentText,
             createdAt: serverTimestamp(),
@@ -353,7 +352,7 @@ function ServiceDetailPage() {
           <ArrowRight className="ml-2" /> العودة للقائمة
         </button>
 
-        {/* البطاقة الرئيسية */}
+      
         <div className="bg-second-bg rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row mb-12">
           <div className="md:w-1/2 h-80 md:h-auto relative group">
             <img src={service.imageUrl || "https://placehold.co/600x600"} alt={service.name} fetchPriority="high" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
@@ -406,7 +405,7 @@ function ServiceDetailPage() {
           </div>
         </div>
 
-        {/* الخدمات المشابهة */}
+  
         {similarServices.length > 0 && (
           <section className="mb-12">
             <h3 className="text-2xl font-extrabold text-second-text mb-6 border-r-4 border-second-text pr-4">خدمات شاهدتها مؤخراً</h3>
@@ -418,7 +417,7 @@ function ServiceDetailPage() {
           </section>
         )}
 
-        {/* --- قسم التعليقات والاستفسارات --- */}
+      
         <section className="mt-12">
            
            <div className="bg-second-bg rounded-3xl p-6 md:p-10 shadow-xl border border-main-text/5">
@@ -429,11 +428,11 @@ function ServiceDetailPage() {
                </h3>
              </div>
 
-             {/* نموذج الإضافة */}
+          
 {currentUser ? (
                 <div className="bg-main-bg/5 rounded-2xl p-6 mb-10 border border-main-text/5 transition-all focus-within:border-main-text/20 focus-within:bg-main-bg/10">
                    
-                   {/* --- التعديل هنا: النجوم في المنتصف وواضحة --- */}
+                   
                    {hasPurchased && (
                       <div className="flex flex-col items-center justify-center mb-6 border-b border-main-text/10 pb-6">
                          <p className="text-main-text font-bold mb-3 text-lg">كيف كانت تجربتك؟</p>
@@ -460,7 +459,7 @@ function ServiceDetailPage() {
                    </div>
                 </div>
              ) : (
-                 // ... (كود غير المسجلين يبقى كما هو)
+          
                 <div className="bg-main-bg/5 rounded-2xl p-6 text-center mb-10 border border-dashed border-main-text/20">
                    <p className="text-main-text/70 text-sm mb-3 font-medium">يجب عليك تسجيل الدخول لتتمكن من المشاركة.</p>
                    <Link to="/login" className="inline-flex items-center gap-2 bg-main-text text-second-text px-6 py-2 rounded-xl font-bold text-sm hover:bg-main-accent hover:text-main-text transition">
@@ -470,7 +469,6 @@ function ServiceDetailPage() {
                 </div>
              )}
 
-             {/* قائمة التعليقات */}
              <div className="space-y-8">
                {individualRatings.length > 0 ? (
                  individualRatings.map((rating) => (
@@ -485,7 +483,6 @@ function ServiceDetailPage() {
                               <h4 className="text-main-text font-bold text-base">{rating.userName || "عميل"}</h4>
                               <div className="flex items-center gap-2">
                                  <span className="text-xs text-main-text/50 font-medium">{formatTimeAgo(rating.createdAt)}</span>
-                                 {/* إظهار النجوم فقط إذا كان التقييم أكبر من 0 */}
                                  {rating.rating > 0 && <StarsReadOnly rating={rating.rating} size={12} />}
                               </div>
                            </div>
