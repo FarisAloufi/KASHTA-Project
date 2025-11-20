@@ -33,7 +33,6 @@ function ServiceCard({ service, userRole, onDelete }) {
 
   return (
     <div className="group relative bg-second-bg text-main-text rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-main-text/10">
-      {/* (4) زر الحذف */}
       {userRole === "provider" && (
         <button
           onClick={handleDeleteClick}
@@ -70,7 +69,6 @@ function ServiceCard({ service, userRole, onDelete }) {
         </h3>
 
         <div className="flex items-center gap-3 mb-4" dir="rtl">
-          {/* (5) صار يستخدم كومبوننت النجوم اللي فوق */}
           <StarsReadOnly rating={service.rating} size={18} />
           <span className="text-lg font-bold text-main-text">
             {service.rating}
@@ -90,9 +88,10 @@ function ServiceCard({ service, userRole, onDelete }) {
 
           <Link
             to={`/service/${service.id}`}
-            className="bg-black text-white px-7 py-4 rounded-2xl font-black text-lg shadow-2xl hover:shadow-gray-800/50 hover:scale-105 transition-all duration-300"
+            className="bg-main-text text-second-text px-3 py-3 rounded-xl font-bold text-lg shadow-xl hover:bg-main-bg hover:scale-105 transition-all flex items-center gap-2 disabled:opacity-70"
+            
           >
-            احجز الآن
+            أضف للسلة
           </Link>
         </div>
       </div>
