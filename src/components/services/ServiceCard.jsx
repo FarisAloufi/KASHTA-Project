@@ -135,32 +135,40 @@ function ServiceCard({ service, userRole, onDelete }) {
           </div>
 
 
-          {quantity > 0 ? (
-            <div className="flex items-center bg-main-text/10 rounded-xl p-1 shadow-inner">
-              <button
-                onClick={handleIncrement}
-                className="w-8 h-8 flex items-center justify-center bg-main-text text-second-bg rounded-lg hover:bg-main-accent transition shadow-sm"
-              >
-                <Plus size={16} strokeWidth={3} />
-              </button>
+          {userRole !== "provider" ? (
+            // (1) إذا كان عميلاً: يظهر أزرار التحكم بالسلة
+            quantity > 0 ? (
+              <div className="flex items-center bg-main-text/10 rounded-xl p-1 shadow-inner">
+                <button
+                  onClick={handleIncrement}
+                  className="w-8 h-8 flex items-center justify-center bg-main-text text-second-bg rounded-lg hover:bg-main-accent transition shadow-sm"
+                >
+                  <Plus size={16} strokeWidth={3} />
+                </button>
 
-              <span className="font-black text-main-text w-8 text-center text-lg">{quantity}</span>
+                <span className="font-black text-main-text w-8 text-center text-lg">{quantity}</span>
 
+                <button
+                  onClick={handleDecrement}
+                  className="w-8 h-8 flex items-center justify-center bg-main-text text-second-bg rounded-lg hover:bg-main-accent transition shadow-sm"
+                >
+                  {quantity === 1 ? <Trash2 size={16} /> : <Minus size={16} strokeWidth={3} />}
+                </button>
+              </div>
+            ) : (
               <button
-                onClick={handleDecrement}
-                className="w-8 h-8 flex items-center justify-center bg-main-text text-second-bg rounded-lg hover:bg-main-accent transition shadow-sm"
+                onClick={handleAddToCart}
+                className="bg-main-text text-second-text px-4 py-2 rounded-lg font-bold text-sm shadow-md hover:bg-main-accent hover:text-main-text transition-all active:scale-95 flex items-center gap-2"
               >
-                {quantity === 1 ? <Trash2 size={16} /> : <Minus size={16} strokeWidth={3} />}
+                <ShoppingCart size={16} />
+                أضف للسلة
               </button>
-            </div>
+            )
           ) : (
-            <button
-              onClick={handleAddToCart}
-              className="bg-main-text text-second-text px-4 py-2 rounded-lg font-bold text-sm shadow-md hover:bg-main-accent hover:text-main-text transition-all active:scale-95 flex items-center gap-2"
-            >
-              <ShoppingCart size={16} />
-              أضف للسلة
-            </button>
+            // (2) إذا كان مقدم خدمة: يظهر نص "عرض فقط"
+            <span className="text-xs font-bold text-main-text/50 bg-main-text/5 px-3 py-2 rounded-lg cursor-not-allowed border border-main-text/10">
+              عرض فقط
+            </span>
           )}
         </div>
       </div>

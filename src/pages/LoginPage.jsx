@@ -141,6 +141,12 @@ function LoginPage() {
           >
             ليس لديك حساب؟ أنشئ حساباً
           </Link>
+          <Link
+            to="/provider-apply"
+            className="inline-block text-center w-full mt-4 font-semibold text-[#3e2723] hover:text-[#e48a4e]"
+          >
+            هل ترغب بالانضمام كمقدم خدمة؟ سجل طلبك هنا
+          </Link>
         </form>
       </div>
     </div>
