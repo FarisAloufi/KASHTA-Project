@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; // 1. استيراد useNavigate
+import { Link, useNavigate } from "react-router-dom"; 
 import { Star, Award, Trash2, ShoppingCart, Plus, Minus } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
@@ -24,9 +24,9 @@ export const StarsReadOnly = ({ rating, size = 14 }) => {
 };
 
 function ServiceCard({ service, userRole, onDelete }) {
-  const navigate = useNavigate(); // 2. تعريف التنقل
+  const navigate = useNavigate(); 
   const { cartItems, addToCart, updateCartItemQuantity, removeFromCart } = useCart();
-  const { currentUser } = useAuth(); // جلب المستخدم الحالي
+  const { currentUser } = useAuth(); 
 
   const cartItem = cartItems.find((item) => item.serviceId === service.id);
   const quantity = cartItem ? cartItem.quantity : 0;
