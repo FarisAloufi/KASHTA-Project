@@ -88,8 +88,8 @@ This project was developed with ❤️ by:
 | **[Faris Aloufi]** | 
 | **[Mohammad Alamri]** |
 
-| Student Name | Student ID | Role |
-|--------------|------------|------|
+| Student Name | Student ID |
+|--------------|------------|
 | **[Faris Aloufi]** | **[2137604]** 
 | **[Mohammad Alamri]** | **[2035814]** | 
 
