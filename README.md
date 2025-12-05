@@ -90,14 +90,10 @@ A detailed view of how components interact, including Composition and Dependency
 
 <div id="team"></div>
 
-## 👥 Team Members (فريق العمل)
 
-This project was developed with ❤️ by:
-
-| Student Name |
-|--------------|
-| **Faris Aloufi** |
-| **Mohammad Alamri** |
+### This project was developed with ❤️ by:
+- **Faris Aloufi** 
+- **Mohammad Alamri** 
 
 ### 👨‍🏫 Supervised By:
 **Dr. Raed Alghamdi**
