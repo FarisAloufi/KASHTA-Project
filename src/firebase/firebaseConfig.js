@@ -5,15 +5,15 @@ import { getStorage } from "firebase/storage";
 
 // --- Configuration ---
 
-// Firebase configuration object containing keys and identifiers for your app.
+// Firebase configuration using Environment Variables for security.
 const firebaseConfig = {
-  apiKey: "AIzaSyA-YkBrWIapCXCbRh6HJtQG5jhdPM74bE4",
-  authDomain: "kashta-9b2bc.firebaseapp.com",
-  projectId: "kashta-9b2bc",
-  storageBucket: "kashta-9b2bc.firebasestorage.app",
-  messagingSenderId: "184279619423",
-  appId: "1:184279619423:web:787e26be56bd8ab3a608ea",
-  measurementId: "G-XD0SFM6C6M",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // --- Initialization ---
