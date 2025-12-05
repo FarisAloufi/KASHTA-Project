@@ -39,12 +39,12 @@ To demonstrate the software engineering principles applied in this project, here
 ### 1. High-Level Architecture
 This diagram illustrates the layered architecture, separating Logic, State Management, Pages, and Components.
 
-![High Level Architecture](./docs/class-diagram-high-level.jpg)
+![High Level Architecture](./docs/class-diagram-high-level.png)
 
 ### 2. Detailed Class Relationships
 A detailed view of how components interact, including Composition and Dependency relationships.
 
-![Detailed Class Diagram](./docs/class-diagram-detailed.jpg)
+![Detailed Class Diagram](./docs/class-diagram-detailed.png)
 
 > *Note: The diagrams above illustrate the "Component-Based Architecture" used in React.*
 
