@@ -85,7 +85,6 @@ A detailed view of how components interact, including Composition and Dependency
 This project was developed with ❤️ by:
 
 | Student Name |
-|--------------|------------|------|
 | **[Faris Aloufi]** | 
 | **[Mohammad Alamri]** |
 
