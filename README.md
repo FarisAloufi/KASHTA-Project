@@ -94,10 +94,10 @@ A detailed view of how components interact, including Composition and Dependency
 
 This project was developed with ❤️ by:
 
-| Student Name | Student ID |
-|--------------|------------|
-| **Faris Aloufi** | **2137604** |
-| **Mohammad Alamri** | **2035814** |
+| Student Name |
+|--------------|
+| **Faris Aloufi** |
+| **Mohammad Alamri** |
 
 ### 👨‍🏫 Supervised By:
 **Dr. Raed Alghamdi**
