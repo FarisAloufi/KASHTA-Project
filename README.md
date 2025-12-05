@@ -41,7 +41,7 @@ This diagram illustrates the layered architecture, separating Logic, State Manag
 
 ![High Level Architecture](./docs/class-diagram-high-level.png)
 
-> *Note: The diagrams above illustrate the "Component-Based Architecture" used in React.*
+> *Note: The diagram above illustrate the "Component-Based Architecture" used in React.*
 
 ---
 
