@@ -8,15 +8,17 @@
   <p>Faculty of Computing and Information Technology (FCIT)<br/>King Abdulaziz University (KAU)</p>
 
   <p>
-    <a href="#-about-the-project">About</a> •
-    <a href="#-system-architecture">Architecture</a> •
-    <a href="#-features">Features</a> •
-    <a href="#-tech-stack">Tech Stack</a> •
-    <a href="#-team-members">Team</a>
+    <a href="#about">About</a> •
+    <a href="#architecture">Architecture</a> •
+    <a href="#features">Features</a> •
+    <a href="#tech-stack">Tech Stack</a> •
+    <a href="#team">Team</a>
   </p>
 </div>
 
 ---
+
+<div id="about"></div>
 
 ## 📖 About the Project (نبذة عن المشروع)
 
@@ -27,6 +29,8 @@ The platform allows users to book tents, equipment, and full packages, select th
 **منصة كشتة** هي تطبيق ويب متكامل يهدف لتسهيل تجربة التخييم والرحلات البرية. يربط التطبيق بين مقدمي خدمات التخييم (تأجير خيام، بكجات، معدات) وبين العملاء الباحثين عن تجربة ممتعة ومريحة، مع إمكانية تحديد الموقع بدقة ومتابعة حالة الطلب.
 
 ---
+
+<div id="architecture"></div>
 
 ## 🏗️ System Architecture (هيكلة النظام)
 
@@ -45,6 +49,8 @@ A detailed view of how components interact, including Composition and Dependency
 > *Note: The diagrams above illustrate the "Component-Based Architecture" used in React.*
 
 ---
+
+<div id="features"></div>
 
 ## ✨ Key Features (المميزات)
 
@@ -67,6 +73,8 @@ A detailed view of how components interact, including Composition and Dependency
 
 ---
 
+<div id="tech-stack"></div>
+
 ## 🛠️ Tech Stack (التقنيات المستخدمة)
 
 | Category | Technology |
@@ -80,22 +88,19 @@ A detailed view of how components interact, including Composition and Dependency
 
 ---
 
+<div id="team"></div>
+
 ## 👥 Team Members (فريق العمل)
 
 This project was developed with ❤️ by:
 
-| Student Name |
-| **[Faris Aloufi]** | 
-| **[Mohammad Alamri]** |
-
 | Student Name | Student ID |
 |--------------|------------|
-| **[Faris Aloufi]** | **[2137604]** 
-| **[Mohammad Alamri]** | **[2035814]** | 
-
+| **Faris Aloufi** | **2137604** |
+| **Mohammad Alamri** | **2035814** |
 
 ### 👨‍🏫 Supervised By:
-**Dr. [Raed Alghamdi]**
+**Dr. Raed Alghamdi**
 
 ---
 
@@ -105,3 +110,13 @@ This project was developed with ❤️ by:
    ```bash
    git clone [https://github.com/YOUR-USERNAME/kashta-project.git](https://github.com/YOUR-USERNAME/kashta-project.git)
    cd kashta-project
+Install dependencies:
+
+Bash
+
+npm install
+Run the development server:
+
+Bash
+
+npm run dev
